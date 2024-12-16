@@ -1,6 +1,6 @@
 name: CD Fake
 on:
-  workworkflow_dispatch:
+  workflow_dispatch:
 jobs:
   deploy-fake:
     runs-on: ubuntu-latest
