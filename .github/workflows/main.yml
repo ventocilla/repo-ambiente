@@ -1,29 +1,30 @@
+# Homologação, Teste, QA, Produção
 name: CD Fake
 on:
   workflow_dispatch:
-    # inputs:
-    #   ambiente:
-    #     type: choice
-    #     options:
-    #         - homologacao
-    #         - producao
 jobs:
   deploy-fake-homolog:
     runs-on: ubuntu-latest
-    environment: homologacao
+    environment: 
+      name: homologacao
+      url: "http://homologacao.devops.com.br"
     steps:
       - name: Fake de deploy em ambiente
         run: echo "Deploy no ambiente de ${{ vars.AMBIENTE_DEPLOY }}"
   teste-fake:
     runs-on: ubuntu-latest
-    environment: homologacao
+    environment: 
+      name: homologacao
+      url: "http://homologacao.devops.com.br"
     needs: [deploy-fake-homolog]
     steps:
       - name: Fake de teste em ambiente
         run: echo "Teste no ambiente de ${{ vars.AMBIENTE_DEPLOY }}"
   deploy-fake-prod:
     runs-on: ubuntu-latest
-    environment: producao
+    environment: 
+      name: producao
+      url: "http://producao.devops.com.br"
     needs: [teste-fake]
     steps:
       - name: Fake de teste em ambiente
